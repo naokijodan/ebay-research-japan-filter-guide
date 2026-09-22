@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テラピークで「Japan」の絞り込みが効かないときの対処法</title>
+<style>
+  :root {
+    --accent: #1a73e8;
+    --accent-light: #e8f0fe;
+    --wrong-bg: #fdecea;
+    --wrong-text: #c62828;
+    --wrong-border: #c62828;
+    --correct-bg: #e6f4ea;
+    --correct-text: #2e7d32;
+    --correct-border: #2e7d32;
+    --gray: #607d8b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+    color: #222;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    word-break: break-word;
+  }
+
+  header.page-title {
+    background: var(--accent);
+    color: #fff;
+    padding: 28px 16px;
+    text-align: center;
+  }
+
+  header.page-title h1 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  header.page-title p.subtitle {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    opacity: 0.92;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  ol.steps {
+    margin: 12px 0;
+    padding-left: 26px;
+  }
+
+  ol.steps li {
+    margin-bottom: 10px;
+  }
+
+  section.card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 24px 32px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    color: var(--accent);
+    font-size: 19px;
+    border-left: 6px solid var(--accent);
+    padding-left: 10px;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 17px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  ul.intro-list {
+    padding-left: 1.2em;
+    margin: 0;
+  }
+
+  ul.intro-list li {
+    margin-bottom: 8px;
+  }
+
+  .point-box {
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 14px;
+    margin: 16px 0;
+    font-weight: bold;
+    color: #0b3d91;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .badge.wrong {
+    background: var(--wrong-bg);
+    color: var(--wrong-text);
+    border: 1px solid var(--wrong-border);
+  }
+
+  .badge.correct {
+    background: var(--correct-bg);
+    color: var(--correct-text);
+    border: 1px solid var(--correct-border);
+  }
+
+  .example-line {
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .example-line.wrong {
+    background: var(--wrong-bg);
+    color: var(--wrong-text);
+    border: 2px solid var(--wrong-border);
+  }
+
+  .example-line.correct {
+    background: var(--correct-bg);
+    color: var(--correct-text);
+    border: 2px solid var(--correct-border);
+  }
+
+  table.term-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 15px;
+  }
+
+  table.term-table th, table.term-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  table.term-table th {
+    background: var(--accent-light);
+    color: #0b3d91;
+    width: 30%;
+  }
+
+  .source-note {
+    font-size: 13px;
+    color: #666;
+    margin: 8px 0 0 0;
+  }
+
+  .source-note a {
+    color: var(--accent);
+  }
+
+  /* コードブロック（折り返しあり・横スクロールなし） */
+  .code-wrap {
+    margin: 16px 0;
+  }
+
+  .code-block {
+    background: #eeeeee;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #222;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+  }
+
+  .code-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    border: 2px solid var(--accent);
+    cursor: pointer;
+    background: #fff;
+    color: var(--accent);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn:active {
+    opacity: 0.8;
+  }
+
+  .copy-feedback {
+    text-align: center;
+    font-size: 13px;
+    color: var(--correct-text);
+    font-weight: bold;
+    margin-top: 6px;
+    min-height: 1.2em;
+  }
+
+  ol.summary-list {
+    padding-left: 1.4em;
+  }
+
+  ol.summary-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding: 20px 16px 40px 16px;
+  }
+
+  @media (max-width: 600px) {
+    section.card { padding: 20px 16px; }
+    .code-block { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-title">
+  <h1>テラピークで「Japan」の絞り込みが効かないときの対処法</h1>
+  <p class="subtitle">出品者所在地を日本に絞れるURLと、その経緯</p>
+</header>
+
+<main>
+
+  <section class="card">
+    <p>
+      テラピークで出品者所在地を「Japan」に絞り込めない時の対処法です。<strong>直す方法は2つあります。</strong>
+    </p>
+    <ul class="intro-list">
+      <li>方法1：すでに絞り込み済みのURL（このページに掲載）をそのまま開く</li>
+      <li>方法2：自分のURLの <code>sellerCountry</code> の部分を書き換える、または付け足す</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>症状</h2>
+    <p>
+      2026年9月中旬ごろから、eBayのテラピーク（Seller Hub の Research）で、出品者の所在地を「Japan」に絞り込んでも、
+      他の国の出品者が混ざって表示されるようになりました。
+    </p>
+    <p>
+      画面上の絞り込み操作をやり直したり、設定を変えたりしても直りません。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>経緯</h2>
+    <p>
+      2026年9月22日の夜、スクールの講師に「自作の日々のリサーチ報告ツールのリンクからテラピークに入ると、Japanだけに絞り込める」と連絡しました。
+    </p>
+    <p>
+      そのリンクから画面を開いたあとは、キーワードを変えても、Japanの絞り込みが維持されたままでした。
+    </p>
+    <p>
+      画面が自動生成する通常のURLと、そのツールが使っているURLの2つを見比べたところ、違いは「出品者所在地」を指定する部分の書き方でした。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>原因の見立て（推測です）</h2>
+    <p>
+      画面の操作で生成される現在のURLは、出品者所在地の指定が <code>sellerCountry=JP</code> という簡素な形式になっています。
+    </p>
+    <p>
+      一方、以前から使っていたツールのURLでは、同じ部分が <code>sellerCountry=SellerLocation:::JP</code> という形式になっていました。
+    </p>
+    <div class="point-box">
+      後者の形式（<code>SellerLocation:::JP</code>）では絞り込みが効き、前者の形式（<code>JP</code>のみ）では効きません。<br>
+      eBay側で画面が出すURLの形式が変わった一方、検索処理の方が新しい形式を受け付けていない、という不整合ではないかと考えています。
+    </div>
+    <p style="font-size: 14px; color: #666;">
+      ※ eBayからの公式な告知は確認していません。あくまで自分で2つのURLを比較した上での見立てであり、不具合と断定するものではありません。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>対処法（方法は2つ）</h2>
+    <p>
+      Japanの絞り込みが効かない時の直し方は、次の2つです。
+    </p>
+
+    <h3>方法1：すでに絞り込み済みのリンクを開く</h3>
+    <p>
+      次の章「そのまま使えるURL」に掲載しているリンクをそのまま開きます。開いたあとは、画面でキーワード・期間・価格などを変えても、Japanの絞り込みは維持されます（2026年9月22日時点で確認）。
+    </p>
+
+    <h3>方法2：自分のURLを書き換える／付け足す</h3>
+    <p>
+      すでに自分で開いているテラピークのURLがある場合は、アドレス欄を次のどちらかの方法で直してから開き直します。
+    </p>
+
+    <p><strong>書き換え：</strong> アドレス欄に <code>sellerCountry=JP</code> がすでにある場合は、その部分だけを <code>sellerCountry=SellerLocation%3A%3A%3AJP</code> に置き換えます。</p>
+
+    <div class="code-wrap">
+      <div class="code-actions" style="justify-content: flex-start; margin-top: 0; margin-bottom: 6px;">
+        <span class="badge wrong">書き換え前</span>
+      </div>
+      <div class="code-block">...&amp;sellerCountry=JP&amp;offset=0...</div>
+      <div class="code-actions" style="justify-content: flex-start; margin-top: 12px; margin-bottom: 6px;">
+        <span class="badge correct">書き換え後</span>
+      </div>
+      <div class="code-block">...&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0...</div>
+    </div>
+
+    <p><strong>付け足し：</strong> アドレス欄に <code>sellerCountry</code> の指定が無い場合は、URLの末尾に次の文字列を付け足します。</p>
+    <div class="code-wrap">
+      <div class="code-block">&amp;sellerCountry=SellerLocation%3A%3A%3AJP</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>そのまま使えるURL</h2>
+    <p>
+      下のURLをコピーするか、「テラピークを開く」から直接開いてください。
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-block" id="code-url">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=30&amp;endDate=1790060400000&amp;startDate=1787468400000&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
+      <div class="code-actions">
+        <button type="button" class="btn primary" onclick="copyUrl()">コピー</button>
+        <a class="btn" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
+      </div>
+      <div class="copy-feedback" id="copy-feedback"></div>
+    </div>
+
+    <h3>URLの中身の簡単な説明</h3>
+    <table class="term-table">
+      <tr>
+        <th>marketplace=EBAY-US</th>
+        <td>米国eBayを対象にする指定です。</td>
+      </tr>
+      <tr>
+        <th>keywords</th>
+        <td>仮のキーワードです。開いたら、調べたい商品名など好きな語に変えてください。</td>
+      </tr>
+      <tr>
+        <th>dayRange=30</th>
+        <td>直近30日分を対象にする指定です。</td>
+      </tr>
+      <tr>
+        <th>startDate / endDate</th>
+        <td>期間の指定です。2026年8月23日〜9月22日が入っているので、開いたら画面上で期間を設定し直してください。</td>
+      </tr>
+      <tr>
+        <th>sellerCountry=SellerLocation:::JP</th>
+        <td>出品者所在地を日本に絞る指定です。この記事で扱っている要点の部分です。</td>
+      </tr>
+      <tr>
+        <th>tabName=SOLD</th>
+        <td>「売れた商品」タブを開く指定です。</td>
+      </tr>
+      <tr>
+        <th>tz=Asia/Tokyo</th>
+        <td>日本時間で表示する指定です。</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>注意</h2>
+    <ul class="intro-list">
+      <li>期間（startDate / endDate）がURLに固定されているので、開いたら画面で期間を選び直してください。</li>
+      <li>eBay側の修正によって、この方法が不要になったり、効かなくなったりする可能性があります。</li>
+      <li>本記事は2026年9月22日時点の情報です。</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>作成: 2026年9月22日</footer>
+
+<script>
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (ok) {
+          resolve();
+        } else {
+          reject(new Error("execCommand copy failed"));
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  function copyUrl() {
+    var url = "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo";
+    var feedback = document.getElementById("copy-feedback");
+    copyText(url).then(function () {
+      feedback.textContent = "コピーしました";
+      setTimeout(function () { feedback.textContent = ""; }, 2500);
+    }).catch(function () {
+      feedback.textContent = "コピーできませんでした。手動で選択してコピーしてください。";
+    });
+  }
+</script>
+
+</body>
+</html>
