@@ -282,9 +282,12 @@
       テラピークで出品者所在地を「Japan」に絞り込めない時の対処法です。<strong>直す方法は2つあります。</strong>
     </p>
     <ul class="intro-list">
-      <li>方法1：すでに絞り込み済みのURL（このページに掲載）をそのまま開く</li>
+      <li>方法1：すでに絞り込み済みのURL（30日用・7日用の2本を掲載）をそのまま開く</li>
       <li>方法2：自分のURLの <code>sellerCountry</code> の部分を書き換える、または付け足す</li>
     </ul>
+    <p style="font-size: 14px; color: #444;">
+      画面でキーワードを変えてもJapanの絞り込みは維持されますが、画面で期間（30日／7日など）を変えると、また絞り込みが効かなくなります（2026年9月22日時点の確認）。期間を変えたい時は、画面で変えるのではなく、期間別のURLを開き直すか、方法2で自分のURLを書き換えてください。
+    </p>
   </section>
 
   <section class="card">
@@ -336,7 +339,7 @@
 
     <h3>方法1：すでに絞り込み済みのリンクを開く</h3>
     <p>
-      次の章「そのまま使えるURL」に掲載しているリンクをそのまま開きます。開いたあとは、画面でキーワード・期間・価格などを変えても、Japanの絞り込みは維持されます（2026年9月22日時点で確認）。
+      次の章「そのまま使えるURL」に、30日用・7日用の2本のリンクを掲載しています。使いたい期間に合う方をそのまま開きます。開いたあとは、画面でキーワードを変えてもJapanの絞り込みは維持されますが、<strong>画面で期間を変更すると、また絞り込みが効かなくなります</strong>（2026年9月22日時点で確認）。期間を変えたい時は、画面で変えるのではなく、もう一方の期間用URLを開き直してください。
     </p>
 
     <h3>方法2：自分のURLを書き換える／付け足す</h3>
@@ -366,16 +369,30 @@
   <section class="card">
     <h2>そのまま使えるURL</h2>
     <p>
-      下のURLをコピーするか、「テラピークを開く」から直接開いてください。
+      2本掲載しています。目的の期間に合う方をそのまま開いてください。画面で期間を変更すると絞り込みが外れるため、期間を変えたい時は画面で変えるのではなく、もう一方のURLを開き直してください。
     </p>
 
+    <h3>URL①　直近30日</h3>
     <div class="code-wrap">
-      <div class="code-block" id="code-url">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=30&amp;endDate=1790060400000&amp;startDate=1787468400000&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
+      <div class="code-block" id="code-url-30">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=30&amp;endDate=1790060400000&amp;startDate=1787468400000&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
       <div class="code-actions">
-        <button type="button" class="btn primary" onclick="copyUrl()">コピー</button>
+        <button type="button" class="btn primary" onclick="copyBlock('code-url-30','feedback-30')">コピー</button>
         <a class="btn" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
       </div>
-      <div class="copy-feedback" id="copy-feedback"></div>
+      <div class="copy-feedback" id="feedback-30"></div>
+    </div>
+
+    <h3>URL②　直近7日</h3>
+    <p>
+      こちらは出品形式（即決・ベストオファー）と最低価格80ドルの条件も入っています。開いたら画面で変更できます。
+    </p>
+    <div class="code-wrap">
+      <div class="code-block" id="code-url-7">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=7&amp;endDate=1790087256591&amp;startDate=1789482456591&amp;format=BEST_OFFER&amp;format=FIXED_PRICE&amp;minPrice=80&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
+      <div class="code-actions">
+        <button type="button" class="btn primary" onclick="copyBlock('code-url-7','feedback-7')">コピー</button>
+        <a class="btn" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=7&endDate=1790087256591&startDate=1789482456591&format=BEST_OFFER&format=FIXED_PRICE&minPrice=80&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
+      </div>
+      <div class="copy-feedback" id="feedback-7"></div>
     </div>
 
     <h3>URLの中身の簡単な説明</h3>
@@ -389,12 +406,20 @@
         <td>仮のキーワードです。開いたら、調べたい商品名など好きな語に変えてください。</td>
       </tr>
       <tr>
-        <th>dayRange=30</th>
-        <td>直近30日分を対象にする指定です。</td>
+        <th>dayRange=30 / dayRange=7</th>
+        <td>それぞれ直近30日分・直近7日分を対象にする指定です。</td>
       </tr>
       <tr>
         <th>startDate / endDate</th>
-        <td>期間の指定です。2026年8月23日〜9月22日が入っているので、開いたら画面上で期間を設定し直してください。</td>
+        <td>期間の指定です。URL①は2026年8月23日〜9月22日、URL②は2026年9月14日〜9月22日が入っているので、開いたら画面上で期間を設定し直してください。</td>
+      </tr>
+      <tr>
+        <th>format=BEST_OFFER / format=FIXED_PRICE</th>
+        <td>出品形式（ベストオファー・即決）を指定するものです。URL②にのみ入っています。開いたら画面で変更できます。</td>
+      </tr>
+      <tr>
+        <th>minPrice=80</th>
+        <td>最低価格80ドルの条件です。URL②にのみ入っています。開いたら画面で変更できます。</td>
       </tr>
       <tr>
         <th>sellerCountry=SellerLocation:::JP</th>
@@ -414,7 +439,7 @@
   <section class="card">
     <h2>注意</h2>
     <ul class="intro-list">
-      <li>期間（startDate / endDate）がURLに固定されているので、開いたら画面で期間を選び直してください。</li>
+      <li>画面でキーワードを変えてもJapanの絞り込みは維持されますが、画面で期間（30日→7日など）を変更すると、絞り込みが再び効かなくなります（2026年9月22日時点の確認）。期間を変えたい時は、画面で変えるのではなく、期間別のURL（30日用／7日用）を開き直すか、方法2で自分のURLを書き換えてください。</li>
       <li>eBay側の修正によって、この方法が不要になったり、効かなくなったりする可能性があります。</li>
       <li>本記事は2026年9月22日時点の情報です。</li>
     </ul>
@@ -452,9 +477,10 @@
     });
   }
 
-  function copyUrl() {
-    var url = "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo";
-    var feedback = document.getElementById("copy-feedback");
+  function copyBlock(blockId, feedbackId) {
+    var block = document.getElementById(blockId);
+    var feedback = document.getElementById(feedbackId);
+    var url = block.textContent;
     copyText(url).then(function () {
       feedback.textContent = "コピーしました";
       setTimeout(function () { feedback.textContent = ""; }, 2500);
