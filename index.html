@@ -369,7 +369,7 @@
   <section class="card">
     <h2>そのまま使えるURL</h2>
     <p>
-      2本掲載しています。目的の期間に合う方をそのまま開いてください。画面で期間を変更すると絞り込みが外れるため、期間を変えたい時は画面で変えるのではなく、もう一方のURLを開き直してください。
+      2本掲載しています。目的の期間に合う方をそのまま開いてください。画面で期間を変更すると絞り込みが外れるため、期間を変えたい時は画面で変えるのではなく、もう一方のURLを開き直してください。このページを開いた時点を終点に、直近30日／7日の期間が自動で入ります。日付を更新したい時はページを再読み込みしてください。
     </p>
 
     <h3>URL①　直近30日</h3>
@@ -377,7 +377,7 @@
       <div class="code-block" id="code-url-30">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=30&amp;endDate=1790060400000&amp;startDate=1787468400000&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
       <div class="code-actions">
         <button type="button" class="btn primary" onclick="copyBlock('code-url-30','feedback-30')">コピー</button>
-        <a class="btn" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
+        <a class="btn" id="link-url-30" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=1790060400000&startDate=1787468400000&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
       </div>
       <div class="copy-feedback" id="feedback-30"></div>
     </div>
@@ -390,7 +390,7 @@
       <div class="code-block" id="code-url-7">https://www.ebay.com/sh/research?marketplace=EBAY-US&amp;keywords=a+-12345&amp;dayRange=7&amp;endDate=1790087256591&amp;startDate=1789482456591&amp;format=BEST_OFFER&amp;format=FIXED_PRICE&amp;minPrice=80&amp;sellerCountry=SellerLocation%3A%3A%3AJP&amp;offset=0&amp;limit=50&amp;tabName=SOLD&amp;tz=Asia%2FTokyo</div>
       <div class="code-actions">
         <button type="button" class="btn primary" onclick="copyBlock('code-url-7','feedback-7')">コピー</button>
-        <a class="btn" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=7&endDate=1790087256591&startDate=1789482456591&format=BEST_OFFER&format=FIXED_PRICE&minPrice=80&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
+        <a class="btn" id="link-url-7" href="https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=7&endDate=1790087256591&startDate=1789482456591&format=BEST_OFFER&format=FIXED_PRICE&minPrice=80&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo" target="_blank" rel="noopener">テラピークを開く</a>
       </div>
       <div class="copy-feedback" id="feedback-7"></div>
     </div>
@@ -411,7 +411,7 @@
       </tr>
       <tr>
         <th>startDate / endDate</th>
-        <td>期間の指定です。URL①は2026年8月23日〜9月22日、URL②は2026年9月14日〜9月22日が入っているので、開いたら画面上で期間を設定し直してください。</td>
+        <td>期間の指定です。このページでは、開いた時点の日時から直近30日分（URL①）／直近7日分（URL②）が自動で入ります。JavaScriptが動かない環境では、記事作成時の固定値（URL①は2026年8月23日〜9月22日、URL②は2026年9月14日〜9月22日）のままになります。</td>
       </tr>
       <tr>
         <th>format=BEST_OFFER / format=FIXED_PRICE</th>
@@ -441,13 +441,21 @@
     <ul class="intro-list">
       <li>画面でキーワードを変えてもJapanの絞り込みは維持されますが、画面で期間（30日→7日など）を変更すると、絞り込みが再び効かなくなります（2026年9月22日時点の確認）。期間を変えたい時は、画面で変えるのではなく、期間別のURL（30日用／7日用）を開き直すか、方法2で自分のURLを書き換えてください。</li>
       <li>eBay側の修正によって、この方法が不要になったり、効かなくなったりする可能性があります。</li>
-      <li>本記事は2026年9月22日時点の情報です。</li>
+      <li>本記事は2026年9月22日時点の情報です（URLの自動計算は2026年9月24日追加）。</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>更新履歴</h2>
+    <ul class="intro-list">
+      <li>2026年9月24日：掲載URLの期間（startDate／endDate）が9月22日で固定されていたため、ページを開いた時点の日時から直近30日／7日を自動で計算する仕組みに変更しました。日付を最新にしたい時はページを再読み込みしてください。</li>
+      <li>2026年9月22日：公開。</li>
     </ul>
   </section>
 
 </main>
 
-<footer>作成: 2026年9月22日</footer>
+<footer>作成: 2026年9月22日　最終更新: 2026年9月24日</footer>
 
 <script>
   function copyText(text) {
@@ -488,6 +496,40 @@
       feedback.textContent = "コピーできませんでした。手動で選択してコピーしてください。";
     });
   }
+
+  function buildUrl30(now) {
+    var endDate = now;
+    var startDate = endDate - 30 * 86400000;
+    return "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=30&endDate=" + endDate + "&startDate=" + startDate + "&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo";
+  }
+
+  function buildUrl7(now) {
+    var endDate = now;
+    var startDate = endDate - 7 * 86400000;
+    return "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=a+-12345&dayRange=7&endDate=" + endDate + "&startDate=" + startDate + "&format=BEST_OFFER&format=FIXED_PRICE&minPrice=80&sellerCountry=SellerLocation%3A%3A%3AJP&offset=0&limit=50&tabName=SOLD&tz=Asia%2FTokyo";
+  }
+
+  function refreshTerapeakUrls() {
+    try {
+      var now = Date.now();
+
+      var block30 = document.getElementById("code-url-30");
+      var link30 = document.getElementById("link-url-30");
+      var url30 = buildUrl30(now);
+      if (block30) { block30.textContent = url30; }
+      if (link30) { link30.href = url30; }
+
+      var block7 = document.getElementById("code-url-7");
+      var link7 = document.getElementById("link-url-7");
+      var url7 = buildUrl7(now);
+      if (block7) { block7.textContent = url7; }
+      if (link7) { link7.href = url7; }
+    } catch (e) {
+      // JSが使えない環境では、記事作成時点の固定URLがそのまま表示されます
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", refreshTerapeakUrls);
 </script>
 
 </body>
